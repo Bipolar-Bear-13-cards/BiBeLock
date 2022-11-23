@@ -27,7 +27,7 @@ class Widget(Qt.QWidget):
 		self.table.setRowCount(200)
 		self.table.setColumnCount(8)
 		self.table.setHorizontalHeaderLabels(["Номер участка", "Фамилия владельца", "E-mail влодельца"," "," "," "," "," "])
-		for i in range(200):
+		for i in range(1):
 			self.btn3.append(Qt.QPushButton())
 			self.table.setCellWidget(i, 3, self.btn3[i])
 			self.btn3[i].clicked.connect(self.showLogOne)
