@@ -108,7 +108,7 @@ class Widget(Qt.QWidget):
 		f=open("logCout")
 		self.sprbtn.setText(f.read()+" новых неудачных попыток(-ки) входа")
 		f.close()
-		for i in range (1,201):
+		for i in range (1,2):
 			self.table.setItem(i-1, 0, QTableWidgetItem(str(i)))
 			f=open(str(i)+"name")
 			self.table.setItem(i-1, 1, QTableWidgetItem(f.read()))
