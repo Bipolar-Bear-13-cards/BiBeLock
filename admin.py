@@ -11,6 +11,7 @@ class Widget(Qt.QWidget):
 	cout=[]
 	table=[]
 	sprbtn=[]
+	sqr=[]
 	btn3=[]
 	btn4=[]
 	btn5=[]
@@ -24,25 +25,27 @@ class Widget(Qt.QWidget):
 		timer.start()
 		self.table = table
 		layout = Qt.QVBoxLayout(self)
-		self.table.setRowCount(200)
-		self.table.setColumnCount(8)
+		self.table.setRowCount(1)
+		self.table.setColumnCount(9)
 		self.table.setHorizontalHeaderLabels(["Номер участка", "Фамилия владельца", "E-mail влодельца"," "," "," "," "," "])
 		for i in range(1):
+			self.sqr.append(Qt.QCheckBox())
+			self.table.setCellWidget(i,0,self.sqr[i])
 			self.btn3.append(Qt.QPushButton())
-			self.table.setCellWidget(i, 3, self.btn3[i])
+			self.table.setCellWidget(i, 4, self.btn3[i])
 			self.btn3[i].clicked.connect(self.showLogOne)
 			self.btn4.append(Qt.QPushButton("удалить все сообщения о событиях"))
 			self.btn4[i].clicked.connect(self.deleteAllOne)
-			self.table.setCellWidget(i, 4, self.btn4[i])
+			self.table.setCellWidget(i, 5, self.btn4[i])
 			self.btn5.append(Qt.QPushButton("сгенерировать новые коды входа"))
 			self.btn5[i].clicked.connect(self.NewCode)
-			self.table.setCellWidget(i, 5, self.btn5[i])
+			self.table.setCellWidget(i, 6, self.btn5[i])
 			self.btn6.append(Qt.QPushButton("выдать код входа"))
 			self.btn6[i].clicked.connect(self.small)
-			self.table.setCellWidget(i, 6, self.btn6[i])
+			self.table.setCellWidget(i, 7, self.btn6[i])
 			self.btn7.append(Qt.QPushButton("Сменить данные владельца"))
 			self.btn7[i].clicked.connect(self.changee)
-			self.table.setCellWidget(i, 7, self.btn7[i])
+			self.table.setCellWidget(i, 8, self.btn7[i])
 		layout.addWidget(self.sprbtn)
 		self.sprbtn.clicked.connect(self.showLog)
 		sprbtn1=Qt.QPushButton("очистить историю неудачных попыток входа")
@@ -61,7 +64,7 @@ class Widget(Qt.QWidget):
 	def deleteAllOne(self):
 		cout=999
 		sender = self.sender()
-		for i in range(200):
+		for i in range(1):
 			if sender==self.btn4[i]:
 				cout=i+1
 				break
@@ -70,7 +73,7 @@ class Widget(Qt.QWidget):
 	def showLogOne(self):
 		cout=999
 		sender = self.sender()
-		for i in range(200):
+		for i in range(1):
 			if sender==self.btn3[i]:
 				cout=i+1
 				break
@@ -82,7 +85,7 @@ class Widget(Qt.QWidget):
 	def NewCode(self):
 		cout=999
 		sender = self.sender()
-		for i in range(200):
+		for i in range(1):
 			if sender==self.btn5[i]:
 				cout=i+1
 				break
@@ -98,7 +101,7 @@ class Widget(Qt.QWidget):
 	def small(self):
 		cout=999
 		sender = self.sender()
-		for i in range(200):
+		for i in range(1):
 			if sender==self.btn6[i]:
 				cout=i+1
 				break
@@ -109,12 +112,12 @@ class Widget(Qt.QWidget):
 		self.sprbtn.setText(f.read()+" новых неудачных попыток(-ки) входа")
 		f.close()
 		for i in range (1,2):
-			self.table.setItem(i-1, 0, QTableWidgetItem(str(i)))
+			self.table.setItem(i-1, 1, QTableWidgetItem(str(i)))
 			f=open(str(i)+"name")
-			self.table.setItem(i-1, 1, QTableWidgetItem(f.read()))
+			self.table.setItem(i-1, 2, QTableWidgetItem(f.read()))
 			f.close()
 			f=open(str(i)+"mail")
-			self.table.setItem(i-1, 2, QTableWidgetItem(f.read()))
+			self.table.setItem(i-1, 3, QTableWidgetItem(f.read()))
 			f.close()
 			f=open(str(i)+"logCout")
 			self.btn3[i-1].setText(f.read()+" новых события(-й)")
@@ -124,7 +127,7 @@ class Widget(Qt.QWidget):
 	def changee(self):
 		cout=999
 		sender = self.sender()
-		for i in range(200):
+		for i in range(1):
 			if sender==self.btn7[i]:
 				cout=i+1
 				break
