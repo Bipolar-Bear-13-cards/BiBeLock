@@ -27,7 +27,7 @@ class Widget(Qt.QWidget):
 		layout = Qt.QVBoxLayout(self)		
 		self.table.setRowCount(1)
 		self.table.setColumnCount(9)
-		self.table.setHorizontalHeaderLabels(["Номер участка", "Фамилия владельца", "E-mail влодельца"," "," "," "," "," "])
+		self.table.setHorizontalHeaderLabels(["","Номер участка", "Фамилия владельца", "E-mail влодельца"," "," "," "," "," "])
 		for i in range(1):
 			self.sqr.append(Qt.QCheckBox())
 			self.table.setCellWidget(i,0,self.sqr[i])
@@ -54,7 +54,7 @@ class Widget(Qt.QWidget):
 		layout.addWidget(self.table)
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
-		self.setMinimumSize(QSize(1300, 100))
+		self.setMinimumSize(QSize(1300, 50))
 		self.showMaximized() 
 		self.Cuff()
 
