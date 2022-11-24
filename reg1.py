@@ -50,15 +50,9 @@ class Widget(Qt.QWidget):
 	def okk(self):
 		#здесь должна быть запись пользователя в бд. ID находится в sys.argv[1]
 		f=open("test","w+")
-		f.write("no")
-		f.close
-		self.close()
 
 	def cancel(self):
 		f=open("test","w+")
-		f.write("no")
-		f.close
-		self.close()
 
 	def small(self):
 		os.system("python3 small.py "+str(1))
