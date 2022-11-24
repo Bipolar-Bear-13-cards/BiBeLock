@@ -4,9 +4,12 @@
 #define SS_PIN 10
 #define RST_PIN 9
 MFRC522 mfrc522(SS_PIN, RST_PIN);
-unsigned long uidDec, uidDecTemp;  // для храниения номера метки в десятичном формате
+unsigned long uidDec, uidDecTemp;
+// для храниения номера метки в десятичном формате
 Servo servo;
+
 void setup() {
+  
   Serial.begin(9600);
   Serial.println("Waiting for card...");
   SPI.begin();  //  инициализация SPI / Init SPI bus.
@@ -16,6 +19,8 @@ void setup() {
 }
 void loop() {
   // Поиск новой метки
+  char UID[20];
+  char outpu[30];
   if ( ! mfrc522.PICC_IsNewCardPresent()) {
     return;
   }
@@ -30,8 +35,8 @@ void loop() {
     uidDecTemp = mfrc522.uid.uidByte[i];
     uidDec = uidDec * 256 + uidDecTemp;
   }
-  Serial.println("Card UID: ");
-  Serial.println(uidDec); // Выводим UID метки в консоль.
+  sprintf(UID,"%lu",uidDec);
+  Serial.println(UID); // Выводим UID метки в консоль.
   if (uidDec == 4078740140) // Сравниваем Uid метки, если он равен заданому то серва открывает.
   {
     //tone(5, 200, 500); // Делаем звуковой сигнал, Открытие
