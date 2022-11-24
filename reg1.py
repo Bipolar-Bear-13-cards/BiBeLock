@@ -46,6 +46,7 @@ class Widget(Qt.QWidget):
 		f=open("test","w+")
 		f.write("no")
 		f.close
+		self.close()
 
 	def cancel(self):
 		f=open("test","w+")
