@@ -52,6 +52,7 @@ class Widget(Qt.QWidget):
 		sprbtn1.clicked.connect(self.deleteAll)
 		layout.addWidget(sprbtn1)
 		layout.addWidget(self.table)
+		layout.setAlignment(QtCore.Qt.AlignCenter)
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
 		self.setMinimumSize(QSize(1300, 50))
