@@ -25,12 +25,14 @@ class Widget(Qt.QWidget):
 		timer.start()
 		self.table = table
 		layout = Qt.QVBoxLayout(self)
+		layoutC = Qt.QHBoxLayout(self)
+		layoutC.setAlignment(QtCore.Qt.AlignCenter)
 		self.table.setRowCount(1)
 		self.table.setColumnCount(9)
 		self.table.setHorizontalHeaderLabels(["Номер участка", "Фамилия владельца", "E-mail влодельца"," "," "," "," "," "])
 		for i in range(1):
 			self.sqr.append(Qt.QCheckBox())
-			self.sqr[i].setAlignment()
+			layoutC.addWidget(self.sqr[i])
 			self.table.setCellWidget(i,0,self.sqr[i])
 			self.btn3.append(Qt.QPushButton())
 			self.table.setCellWidget(i, 4, self.btn3[i])
