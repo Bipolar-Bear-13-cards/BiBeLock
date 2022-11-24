@@ -77,6 +77,7 @@ void loop() {
     }
   }
   else if (cout==3){
+    delay(1000);
     c=(char)Serial.read();
     if (c =='0'){
       //смена диода
