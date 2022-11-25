@@ -27,7 +27,7 @@ class Widget(Qt.QWidget):
 		self.table = table
 		layout = Qt.QVBoxLayout(self)		
 		self.table.setRowCount(1)
-		self.table.setColumnCount(self.n)
+		self.table.setColumnCount(2)
 		self.table.setHorizontalHeaderLabels(["","Номер участка", "Фамилия владельца", "E-mail влодельца"," "," "," "," "," "])
 		for i in range(self.n):
 			self.sqr.append(Qt.QCheckBox())
