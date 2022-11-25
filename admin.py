@@ -17,8 +17,9 @@ class Widget(Qt.QWidget):
 	btn5=[]
 	btn6=[]
 	btn7=[]
-	def __init__(self,table):
+	def __init__(self,table,n):
 		super().__init__()
+		self.n=n
 		self.setWindowTitle("панель управления калиткой №1")
 		self.sprbtn=Qt.QPushButton()
 		timer = QtCore.QTimer(self, timeout=self.Cuff, interval=5000)
@@ -28,10 +29,9 @@ class Widget(Qt.QWidget):
 		self.table.setRowCount(1)
 		self.table.setColumnCount(9)
 		self.table.setHorizontalHeaderLabels(["","Номер участка", "Фамилия владельца", "E-mail влодельца"," "," "," "," "," "])
-		for i in range(1):
+		for i in range(self.n):
 			self.sqr.append(Qt.QCheckBox())
 			self.table.setCellWidget(i,0,self.sqr[i])
-			self.sqr[i].setChecked(True)
 			self.btn3.append(Qt.QPushButton())
 			self.table.setCellWidget(i, 4, self.btn3[i])
 			self.btn3[i].clicked.connect(self.showLogOne)
@@ -53,6 +53,9 @@ class Widget(Qt.QWidget):
 		sprbtn1=Qt.QPushButton("очистить историю неудачных попыток входа")
 		sprbtn1.clicked.connect(self.deleteAll)
 		layout.addWidget(sprbtn1)
+		sprbtn2=Qt.QPushButton("выделить все")
+		sprbtn2.clicked.connect(self.selectAll)
+		layout.addWidget(sprbtn2)
 		layout.addWidget(self.table)
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
@@ -63,10 +66,14 @@ class Widget(Qt.QWidget):
 	def deleteAll(self):
 		os.system("python3 deleteAll.py")
 
+	def selectAll(self):
+		for i in range(self.n):
+			self.sqr[i].setChecked(True)
+
 	def deleteAllOne(self):
 		cout=999
 		sender = self.sender()
-		for i in range(1):
+		for i in range(self.n):
 			if sender==self.btn4[i]:
 				cout=i+1
 				break
@@ -75,7 +82,7 @@ class Widget(Qt.QWidget):
 	def showLogOne(self):
 		cout=999
 		sender = self.sender()
-		for i in range(1):
+		for i in range(self.n):
 			if sender==self.btn3[i]:
 				cout=i+1
 				break
@@ -87,7 +94,7 @@ class Widget(Qt.QWidget):
 	def NewCode(self):
 		cout=999
 		sender = self.sender()
-		for i in range(1):
+		for i in range(self.n):
 			if sender==self.btn5[i]:
 				cout=i+1
 				break
@@ -103,7 +110,7 @@ class Widget(Qt.QWidget):
 	def small(self):
 		cout=999
 		sender = self.sender()
-		for i in range(1):
+		for i in range(self.n):
 			if sender==self.btn6[i]:
 				cout=i+1
 				break
@@ -113,7 +120,7 @@ class Widget(Qt.QWidget):
 		f=open("logCout")
 		self.sprbtn.setText(f.read()+" новых неудачных попыток(-ки) входа")
 		f.close()
-		for i in range (1,2):
+		for i in range (1,self.n+1):
 			self.table.setItem(i-1, 1, QTableWidgetItem(str(i)))
 			f=open(str(i)+"name")
 			self.table.setItem(i-1, 2, QTableWidgetItem(f.read()))
@@ -130,7 +137,7 @@ class Widget(Qt.QWidget):
 	def changee(self):
 		cout=999
 		sender = self.sender()
-		for i in range(1):
+		for i in range(self.n):
 			if sender==self.btn7[i]:
 				cout=i+1
 				break
@@ -138,5 +145,5 @@ class Widget(Qt.QWidget):
 
 if __name__ == '__main__':
     app = Qt.QApplication([])
-    w = Widget(Qt.QTableWidget())
+    w = Widget(Qt.QTableWidget(),1)
     sys.exit(app.exec_())
