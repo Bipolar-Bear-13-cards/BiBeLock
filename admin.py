@@ -123,6 +123,7 @@ class Widget(Qt.QWidget):
 			f=open(str(i)+"logCout")
 			self.btn3[i-1].setText(f.read()+" новых события(-й)")
 			f.close()
+			print (sqr[i-1].isChecked())
 		self.table.resizeColumnsToContents()
 
 	def changee(self):
