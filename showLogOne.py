@@ -1,6 +1,5 @@
-from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5 import QtWidgets, QtCore, Qt
-from PyQt5.QtCore import QSize#, QColor
+from PyQt5.QtCore import QSize
 import sys
 import time
 
@@ -8,19 +7,17 @@ import time
 
 
 class Widget(Qt.QWidget):
-	table=[]
+	txt=[]
 	def __init__(self,table):
 		super().__init__()
 		timer = QtCore.QTimer(self, timeout=self.Cuff, interval=1000)
 		timer.start()
 		self.setWindowTitle("информация по кодам доступа участка №"+sys.argv[1])
-		self.table=table
+		self.txt=Qt.QLabel('',self)
+		self.txt.setAlignment(QtCore.Qt.AlignCenter)
 		layout = Qt.QHBoxLayout(self)
-		self.table.setRowCount(0)
-		self.table.setColumnCount(3)
-		self.table.setHorizontalHeaderLabels(["дата","время", "описание события"])
 		sprbtn=Qt.QPushButton("отметить все просмотренными")
-		layout.addWidget(self.table)
+		layout.addWidget(self.txt)
 		layout.addWidget(sprbtn)
 		sprbtn.clicked.connect(self.Pomet)
 		self.show()
@@ -32,18 +29,16 @@ class Widget(Qt.QWidget):
 		n=int(f1.read())
 		f2=open(sys.argv[1]+"logCout")
 		i=0
-		self.table.insertRow(2)
-		self.table.setItem(0, 0, QTableWidgetItem(str(0)))
 		for line in f:
 			if i<n:
 				inlines=(line+"\n"+inlines)
 			else:
 				inlines=("(новое)"+line+"\n"+inlines)
 			i+=1
-		#if n+int(f2.read()) == 0:
-			#self.txt.setText("       Сообщений нет       ")
-		#else:
-			#self.txt.setText(inlines[:-1])
+		if n+int(f2.read()) == 0:
+			self.txt.setText("       Сообщений нет       ")
+		else:
+			self.txt.setText(inlines[:-1])
 		f.close()
 		f1.close()
 		f2.close()
