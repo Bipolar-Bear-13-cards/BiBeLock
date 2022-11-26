@@ -7,14 +7,13 @@ import time
 
 
 class Widget(Qt.QWidget):
-	txt=[]
+	table=[]
 	def __init__(self,table):
 		super().__init__()
 		timer = QtCore.QTimer(self, timeout=self.Cuff, interval=1000)
 		timer.start()
 		self.setWindowTitle("информация по кодам доступа участка №"+sys.argv[1])
-		self.txt=Qt.QLabel('',self)
-		self.txt.setAlignment(QtCore.Qt.AlignCenter)
+		self.table=table
 		layout = Qt.QHBoxLayout(self)
 		sprbtn=Qt.QPushButton("отметить все просмотренными")
 		layout.addWidget(self.txt)
@@ -36,7 +35,7 @@ class Widget(Qt.QWidget):
 				inlines=("(новое)"+line+"\n"+inlines)
 			i+=1
 		if n+int(f2.read()) == 0:
-                        self.txt.setText("       Сообщений нет       ")
+			self.txt.setText("       Сообщений нет       ")
 		else:
 			self.txt.setText(inlines[:-1])
 		f.close()
