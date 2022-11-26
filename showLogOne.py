@@ -31,7 +31,7 @@ class Widget(Qt.QWidget):
 		n=int(f1.read())
 		f2=open(sys.argv[1]+"logCout")
 		i=0
-		self.table.insertRow(1)
+		self.table.insertRow(2)
 		for line in f:
 			if i<n:
 				inlines=(line+"\n"+inlines)
