@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets, QtCore, Qt
-from PyQt5.QtCore import QSize
+from PyQt5.QtCore import QSize, QColor
 import sys
 import time
 
@@ -15,8 +15,11 @@ class Widget(Qt.QWidget):
 		self.setWindowTitle("информация по кодам доступа участка №"+sys.argv[1])
 		self.table=table
 		layout = Qt.QHBoxLayout(self)
+		self.table.setRowCount(0)
+		self.table.setColumnCount(3)
+		self.table.setHorizontalHeaderLabels(["дата","время", "описание события"])
 		sprbtn=Qt.QPushButton("отметить все просмотренными")
-		layout.addWidget(self.txt)
+		layout.addWidget(self.table)
 		layout.addWidget(sprbtn)
 		sprbtn.clicked.connect(self.Pomet)
 		self.show()
@@ -28,16 +31,17 @@ class Widget(Qt.QWidget):
 		n=int(f1.read())
 		f2=open(sys.argv[1]+"logCout")
 		i=0
+		self.table.insertRow(1)
 		for line in f:
 			if i<n:
 				inlines=(line+"\n"+inlines)
 			else:
 				inlines=("(новое)"+line+"\n"+inlines)
 			i+=1
-		if n+int(f2.read()) == 0:
-			self.txt.setText("       Сообщений нет       ")
-		else:
-			self.txt.setText(inlines[:-1])
+		#if n+int(f2.read()) == 0:
+			#self.txt.setText("       Сообщений нет       ")
+		#else:
+			#self.txt.setText(inlines[:-1])
 		f.close()
 		f1.close()
 		f2.close()
