@@ -7,6 +7,7 @@ import os
 import random
 
 
+
 class Widget(Qt.QWidget):
 	cout=[]
 	table=[]
