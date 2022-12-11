@@ -14,7 +14,6 @@ class Widget(Qt.QWidget):
         txt1=Qt.QLabel("Приложите карту к считывателю")
         txt1.setAlignment(QtCore.Qt.AlignCenter)
         layout1.addWidget(txt1)
-        os.system("sudo ./reg1.sh") 
         self.Cuff()
 
     def Cuff(self):
