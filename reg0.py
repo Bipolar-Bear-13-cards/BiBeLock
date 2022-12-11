@@ -6,8 +6,10 @@ import os
 class Widget(Qt.QWidget):
     def __init__(self,table):
         super().__init__()
+        layout1 = Qt.QVBoxLayout(self)
         txt1=Qt.QLabel("Приложите карту к считывателю")
         txt1.setAlignment(QtCore.Qt.AlignCenter)
+        layout1.addWidget(txt1)
         os.system("sudo python3 reg1.py")
         self.close()
 
