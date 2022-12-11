@@ -2,4 +2,7 @@ import os
 import sys
 
 
-print(sys.argv[1])
+
+f=open("test","w+")
+f.write(sys.argv[1])
+f.close()
