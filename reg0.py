@@ -16,7 +16,7 @@ class Widget(Qt.QWidget):
         self.fontD.setPointSize(20)
         txt1=Qt.QLabel("Приложите карту к считывателю")
         txt1.setAlignment(QtCore.Qt.AlignCenter)
-        self.txt1.setFont(self.fontD) 
+        txt1.setFont(self.fontD) 
         layout1.setAlignment(QtCore.Qt.AlignCenter)
         self.setMinimumSize(QSize(300, 40))
         self.show()
