@@ -1,6 +1,5 @@
 import os
+import sys
 
 
-
-UID=os.system("sudo ./reg1.sh")
-print(UID[0])
+print(sys.argv[1])
