@@ -8,13 +8,13 @@ import sys
 class Widget(Qt.QWidget):
     def __init__(self,table):
         super().__init__()
-        self.setWindowTitle("  ")
         timer = QtCore.QTimer(self, timeout=self.Cuff, interval=1000)
         timer.start()
         layout1 = Qt.QVBoxLayout(self)
         txt1=Qt.QLabel("Приложите карту к считывателю")
         txt1.setAlignment(QtCore.Qt.AlignCenter)
         layout1.setAlignment(QtCore.Qt.AlignCenter)
+        self.setMinimumSize(QSize(100, 30))
         self.show()
         layout1.addWidget(txt1)
         self.Cuff()
