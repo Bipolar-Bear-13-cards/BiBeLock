@@ -10,7 +10,7 @@ class Widget(Qt.QWidget):
         txt1=Qt.QLabel("Ï")
         txt1.setAlignment(QtCore.Qt.AlignCenter)
         layout1.addWidget(txt1)
-        os.system("sudo python3 reg1.py")
+        os.system("sudo ./reg1.sh")
         self.close()
 
 
