@@ -18,13 +18,12 @@ class Widget(Qt.QWidget):
 
     def Cuff(self):
         f = open("test","r")
-        if(f.read!=0):
+        if(f.read!="0"):
             self.close()
+        f.close
 
 
-f = open("test","w+")
-f.write("0")
-f.close()
+
 app1 = Qt.QApplication([])
 w1 = Widget(Qt.QTableWidget())
 sys.exit(app1.exec_())
