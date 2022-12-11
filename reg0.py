@@ -18,10 +18,9 @@ class Widget(Qt.QWidget):
         txt1.setAlignment(QtCore.Qt.AlignCenter)
         layout1.addWidget(txt1)
         os.system("sudo ./reg1.sh") 
-        self.close()
         self.Cuff()
 
-    def Cuff():
+    def Cuff(self):
         f = open("test","r")
         if(f.read!=0):
             self.close()
