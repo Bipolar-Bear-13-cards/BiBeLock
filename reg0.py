@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets, QtCore, Qt
 from PyQt5.QtCore import QSize
+from PyQt5.QtGui import QFont
 import os
 import sys
 
@@ -11,10 +12,13 @@ class Widget(Qt.QWidget):
         timer = QtCore.QTimer(self, timeout=self.Cuff, interval=1000)
         timer.start()
         layout1 = Qt.QVBoxLayout(self)
+        self.fontD = self.font()
+        self.fontD.setPointSize(20)
         txt1=Qt.QLabel("Приложите карту к считывателю")
         txt1.setAlignment(QtCore.Qt.AlignCenter)
+        self.txt1.setFont(self.fontD) 
         layout1.setAlignment(QtCore.Qt.AlignCenter)
-        self.setMinimumSize(QSize(400, 400))
+        self.setMinimumSize(QSize(300, 40))
         self.show()
         layout1.addWidget(txt1)
         self.Cuff()
