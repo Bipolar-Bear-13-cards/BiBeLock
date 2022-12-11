@@ -21,7 +21,7 @@ class Widget(Qt.QWidget):
 
     def Cuff(self):
         f = open("test","r")
-        if(f.read[0:1]!="no"):
+        if(f.read[0:2]!="no"):
             self.close()
         f.close
 
