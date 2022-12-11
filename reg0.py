@@ -18,7 +18,7 @@ class Widget(Qt.QWidget):
         txt1.setAlignment(QtCore.Qt.AlignCenter)
         txt1.setFont(self.fontD) 
         layout1.setAlignment(QtCore.Qt.AlignCenter)
-        self.setMinimumSize(QSize(300, 40))
+        self.setMinimumSize(QSize(1000, 40))
         self.show()
         layout1.addWidget(txt1)
         self.Cuff()
