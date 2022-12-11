@@ -7,9 +7,6 @@ import sys
 
 class Widget(Qt.QWidget):
     def __init__(self,table):
-        f = open("test","w+")
-        f.write("0")
-        f.close()
         super().__init__()
         timer = QtCore.QTimer(self, timeout=self.Cuff, interval=1000)
         timer.start()
@@ -26,7 +23,9 @@ class Widget(Qt.QWidget):
             self.close()
 
 
-
+f = open("test","w+")
+f.write("0")
+f.close()
 app1 = Qt.QApplication([])
 w1 = Widget(Qt.QTableWidget())
 sys.exit(app1.exec_())
