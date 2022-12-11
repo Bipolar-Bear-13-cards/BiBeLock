@@ -14,7 +14,7 @@ class Widget(Qt.QWidget):
         layout1 = Qt.QVBoxLayout(self)
         txt1=Qt.QLabel("Приложите карту к считывателю")
         txt1.setAlignment(QtCore.Qt.AlignCenter)
-        layout.setAlignment(QtCore.Qt.AlignCenter)
+        layout1.setAlignment(QtCore.Qt.AlignCenter)
         self.show()
         layout1.addWidget(txt1)
         self.Cuff()
