@@ -10,3 +10,9 @@ class Widget(Qt.QWidget):
         txt1.setAlignment(QtCore.Qt.AlignCenter)
         os.system("sudo python3 reg1.py")
         self.close()
+
+
+
+app1 = Qt.QApplication([])
+w1 = Widget(Qt.QTableWidget())
+sys.exit(app1.exec_())
