@@ -16,9 +16,12 @@ class Widget(Qt.QWidget):
 		self.txt=Qt.QLabel('',self)
 		self.txt.setAlignment(QtCore.Qt.AlignCenter)
 		layout = Qt.QHBoxLayout(self)
+		sprbtn1=Qt.QPushButton("сменить учётные данные")
+		#sprbtn1.clicked.connect(self.deleteAll)
+		layout.addWidget(sprbtn1)
 		sprbtn=Qt.QPushButton("отметить все просмотренными")
-		layout.addWidget(self.txt)
 		layout.addWidget(sprbtn)
+		layout.addWidget(self.txt)
 		sprbtn.clicked.connect(self.Pomet)
 		self.show()
 

@@ -67,9 +67,12 @@ class Widget(Qt.QWidget):
 		sprbtn2=Qt.QPushButton("выделить все")
 		sprbtn2.clicked.connect(self.selectAll)
 		layout.addWidget(sprbtn2)
-		sprbtn3=Qt.QPushButton("добавить пользователя")
-		sprbtn3.clicked.connect(self.add_usr)
+		sprbtn3=Qt.QPushButton("удалить выбранных пользователей")
+		sprbtn3.clicked.connect(self.del_usr)
 		layout.addWidget(sprbtn3)
+		sprbtn4=Qt.QPushButton("добавить пользователя")
+		sprbtn4.clicked.connect(self.add_usr)
+		layout.addWidget(sprbtn4)
 		layout.addWidget(self.table)
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
@@ -84,6 +87,9 @@ class Widget(Qt.QWidget):
 	def selectAll(self):
 		for i in range(self.n):
 			self.sqr[i].setChecked(True)
+
+	def del_usr(self):
+		1
 
 	def add_usr(self):
 		os.system("(sudo ./reg1.sh &);sudo python3 reg0.py")

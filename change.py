@@ -11,7 +11,7 @@ class Widget(Qt.QWidget):
 	pole2=[]
 	def __init__(self,table):
 		super().__init__()
-		self.setWindowTitle("Смена данных владельца участка №"+sys.argv[1])
+		self.setWindowTitle("Смена данных пользователя с ID"+sys.argv[1])
 		layout1 = Qt.QVBoxLayout(self)
 		txt1=Qt.QLabel("Новая фамилия владельца:")
 		self.pole1=Qt.QLineEdit()
