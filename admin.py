@@ -23,7 +23,7 @@ class Widget(Qt.QWidget):
 	def __init__(self,table,n):
 		super().__init__()
 		self.n=n
-		self.setWindowTitle("панель управления калиткой №1")
+		self.setWindowTitle("панель управления устройством контроля доступа")
 		self.sprbtn=Qt.QPushButton()
 		timer = QtCore.QTimer(self, timeout=self.Cuff, interval=5000)
 		timer.start()
@@ -59,6 +59,9 @@ class Widget(Qt.QWidget):
 		sprbtn2=Qt.QPushButton("выделить все")
 		sprbtn2.clicked.connect(self.selectAll)
 		layout.addWidget(sprbtn2)
+		sprbtn3=Qt.QPushButton("добавить пользователя")
+		sprbtn3.clicked.connect(self.add_usr)
+		layout.addWidget(sprbtn3)
 		layout.addWidget(self.table)
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
@@ -72,6 +75,10 @@ class Widget(Qt.QWidget):
 	def selectAll(self):
 		for i in range(self.n):
 			self.sqr[i].setChecked(True)
+
+	def add_usr(self):
+		os.system("sudo ./reg1.sh")
+		os.system("sudo python3 reg0.py")
 
 	def deleteAllOne(self):
 		cout=999
