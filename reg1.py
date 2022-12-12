@@ -34,12 +34,18 @@ class Widget(Qt.QWidget):
 		layout1.addWidget(txt3)
 		layout1.addWidget(self.pole3)
 		self.show()
-		sprbtn1=Qt.QPushButton("ОК")
-		sprbtn1.clicked.connect(self.okk)
-		sprbtn2=Qt.QPushButton("Отмена")
-		sprbtn2.clicked.connect(self.cancel)
+		sprbtn1=Qt.QPushButton("")
+		sprbtn1.clicked.connect(self.small)
+		sprbtn2=Qt.QPushButton("")
+		sprbtn2.clicked.connect(self.okk)
+		sprbtn3=Qt.QPushButton("ОК")
+		sprbtn3.clicked.connect(self.okk)
+		sprbtn4=Qt.QPushButton("Отмена")
+		sprbtn4.clicked.connect(self.cancel)
 		layout1.addWidget(sprbtn1)
 		layout1.addWidget(sprbtn2)
+		layout1.addWidget(sprbtn3)
+		layout1.addWidget(sprbtn4)
 
 	def okk(self):
 		#здесь должна быть запись пользователя в бд. ID находится в sys.argv[1]
@@ -54,6 +60,8 @@ class Widget(Qt.QWidget):
 		f.close
 		self.close()
 
+	def small(self):
+		os.system("python3 small.py "+str(1))
 
 f=open("test","w+")
 f.write("ye")

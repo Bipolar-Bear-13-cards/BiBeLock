@@ -131,14 +131,7 @@ class Widget(Qt.QWidget):
 			f.write(str(cout)+"*"+passwd+"\n")
 		f.close()
 
-	def small(self):
-		cout=999
-		sender = self.sender()
-		for i in range(self.n):
-			if sender==self.btn6[i]:
-				cout=i+1
-				break
-		os.system("python3 small.py "+str(cout))
+	
 
 	def Cuff(self):
 		f=open("logCout")
