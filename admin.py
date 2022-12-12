@@ -75,6 +75,7 @@ class Widget(Qt.QWidget):
 		self.table.verticalHeader().setVisible(False)
 		self.setMinimumSize(QSize(500, 1500))
 		#self.showMaximized() 
+		self.show()
 		self.Cuff()
 
 	def deleteAll(self):
