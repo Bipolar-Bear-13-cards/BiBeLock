@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5.QtWidgets import QTableWidgetItem, QApplication
 from PyQt5 import Qt, QtWidgets, QtCore
 from PyQt5.QtCore import QSize
 import sys
@@ -73,7 +73,7 @@ class Widget(Qt.QWidget):
 		layout.addWidget(self.table)
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
-		self.setMinimumSize(QSize(500, self.desktop.screenGeometry().height()))
+		self.setMinimumSize(QSize(500, QApplication.desktop().screenGeometry().height()))
 		#self.showMaximized() 
 		self.show()
 		self.Cuff()
