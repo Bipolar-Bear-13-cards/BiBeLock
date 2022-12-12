@@ -30,7 +30,7 @@ class Widget(Qt.QWidget):
 		self.table = table
 		layout = Qt.QVBoxLayout(self)		
 		self.table.setRowCount(self.n)
-		self.table.setColumnCount(6)
+		self.table.setColumnCount(7)
 		self.table.setHorizontalHeaderLabels(["","ID", "Фамилия","Имя", "E-mail"," "," "])
 		for i in range(self.n):
 			self.sqr.append(Qt.QCheckBox())
@@ -39,7 +39,7 @@ class Widget(Qt.QWidget):
 			self.table.setCellWidget(i, 6, self.btn3[i])
 			self.btn3[i].clicked.connect(self.showLogOne)
 			self.table.setItem(i, 1, QTableWidgetItem(str(i+1)))
-			self.table.setItem(i, 2, " ")
+			self.table.setItem(i, 2, QTableWidgetItem(" "))
 			f=open(str(i+1)+"name")
 			self.table.setItem(i, 3, QTableWidgetItem(f.read()))
 			f.close()
