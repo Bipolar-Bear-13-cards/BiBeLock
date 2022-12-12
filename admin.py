@@ -36,7 +36,7 @@ class Widget(Qt.QWidget):
 			self.sqr.append(Qt.QCheckBox())
 			self.table.setCellWidget(i,0,self.sqr[i])
 			self.btn3.append(Qt.QPushButton("подробнее"))
-			self.table.setCellWidget(i, 5, self.btn3[i])
+			self.table.setCellWidget(i, 6, self.btn3[i])
 			self.btn3[i].clicked.connect(self.showLogOne)
 			self.table.setItem(i, 1, QTableWidgetItem(str(i+1)))
 			f=open(str(i+1)+"name")
@@ -72,8 +72,8 @@ class Widget(Qt.QWidget):
 		layout.addWidget(self.table)
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
-		self.setMinimumSize(QSize(1300, 50))
-		self.showMaximized() 
+		self.setMinimumSize(QSize(500, 1500))
+		#self.showMaximized() 
 		self.Cuff()
 
 	def deleteAll(self):
@@ -138,7 +138,7 @@ class Widget(Qt.QWidget):
 		f.close()
 		for i in range (1,self.n+1):
 			f=open(str(i)+"logCout")
-			self.table.setItem(i-1, 4, QTableWidgetItem(f.read()+" новых события(-й)"))
+			self.table.setItem(i-1, 5, QTableWidgetItem(f.read()+" новых события(-й)"))
 			f.close()
 		self.table.resizeColumnsToContents()
 
