@@ -39,6 +39,7 @@ class Widget(Qt.QWidget):
 			self.table.setCellWidget(i, 6, self.btn3[i])
 			self.btn3[i].clicked.connect(self.showLogOne)
 			self.table.setItem(i, 1, QTableWidgetItem(str(i+1)))
+			self.table.setItem(i, 2, " ")
 			f=open(str(i+1)+"name")
 			self.table.setItem(i, 3, QTableWidgetItem(f.read()))
 			f.close()
