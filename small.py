@@ -10,10 +10,7 @@ class Widget(Qt.QWidget):
 	def __init__(self,table):
 		super().__init__()
 		self.setWindowTitle("ПИН-код для пользователя с ID "+sys.argv[1])
-		PIN=""
-		for i in range(4):
-			PIN=PIN+str(random.randrange(10))
-		#здесь должна быть запись в базу данных пин-кода
+		PIN=sys.argv[2]
 		txt=Qt.QLabel(PIN)
 		self.fontD = self.font()
 		self.fontD.setPointSize(20)

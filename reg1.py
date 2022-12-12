@@ -2,6 +2,7 @@ import os
 from PyQt5 import QtWidgets, QtCore, Qt
 from PyQt5.QtCore import QSize
 import sys
+import sqlite3
 
 
 
@@ -12,6 +13,9 @@ class Widget(Qt.QWidget):
 	pole2=[]
 	pole3=[]
 	def __init__(self,table):
+		self.PIN=""
+		for i in range(4):
+			self.PIN=self.PIN+str(random.randrange(10))
 		super().__init__()
 		self.setWindowTitle("Добавление нового пользователя")
 		layout1 = Qt.QVBoxLayout(self)
@@ -49,13 +53,20 @@ class Widget(Qt.QWidget):
 
 	def okk(self):
 		#здесь должна быть запись пользователя в бд. ID находится в sys.argv[1]
-		f=open("test","w+")
+		connection = sqlite3.connect('users.db')
+		cursor = connection.cursor()
+		cursor.execute('''CREATE TABLE IF NOT EXISTS Users
+                    (UID TEXT, sname TEXT, name TEXT, mail TEXT, PIN TEXT)''')
+		userid = [(int(sys.argv[1]),self.pole1.text(),self.pole2.text(),self.pole3.text(),self.PIN)]
+		connection.commit()
+		connection.close()
+
 
 	def cancel(self):
-		f=open("test","w+")
+		self.close()
 
 	def small(self):
-		os.system("python3 small.py "+str(1))
+		os.system("python3 small.py "+str(sys.argv[1])+" "+self.PIN)
 
 	def bigger(self):
 		1
