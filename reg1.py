@@ -37,7 +37,7 @@ class Widget(Qt.QWidget):
 		sprbtn1=Qt.QPushButton("")
 		sprbtn1.clicked.connect(self.small)
 		sprbtn2=Qt.QPushButton("")
-		sprbtn2.clicked.connect(self.okk)
+		sprbtn2.clicked.connect(self.bigger)
 		sprbtn3=Qt.QPushButton("ОК")
 		sprbtn3.clicked.connect(self.okk)
 		sprbtn4=Qt.QPushButton("Отмена")
@@ -62,6 +62,9 @@ class Widget(Qt.QWidget):
 
 	def small(self):
 		os.system("python3 small.py "+str(1))
+
+	def bigger(self):
+		1
 
 f=open("test","w+")
 f.write("ye")
