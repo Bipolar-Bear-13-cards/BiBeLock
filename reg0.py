@@ -9,7 +9,7 @@ import sys
 class Widget(Qt.QWidget):
     def __init__(self,table):
         super().__init__()
-        timer = QtCore.QTimer(self, timeout=self.Cuff, interval=1000)
+        timer = QtCore.QTimer(self, timeout=self.Cuff, interval=100)
         timer.start()
         layout1 = Qt.QVBoxLayout(self)
         self.fontD = self.font()

@@ -77,7 +77,7 @@ class Widget(Qt.QWidget):
 			self.sqr[i].setChecked(True)
 
 	def add_usr(self):
-		os.system("sudo ./reg1.sh;sudo python3 reg0.py")
+		os.system("(sudo ./reg1.sh &);sudo python3 reg0.py")
 
 	def deleteAllOne(self):
 		cout=999
