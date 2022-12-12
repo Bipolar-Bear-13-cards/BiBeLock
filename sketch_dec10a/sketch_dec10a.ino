@@ -10,6 +10,7 @@ unsigned long uidDec, uidDecTemp;
 Servo servo;
 String outpu;
 String UID;
+char c;
 int cout = 0;
 const byte ROWS = 4; // 4 строки
 const byte COLS = 4;// 4 столбца
@@ -63,7 +64,7 @@ void loop() {
           //смена светодиода
         }
         else{
-          cout=0;
+          cout=3;
           Serial.println(outpu);
         }
       }
@@ -73,6 +74,20 @@ void loop() {
       else{
         outpu=outpu+(String)key;
       }
+    }
+  }
+  else if (cout==3){
+    c=(char)Serial.read();
+    if (c =='0'){
+      //смена диода
+      cout=0;
+    }
+    else if (c=='1'){
+      //смена диода
+      servo.write(1);
+      delay(3000);
+      servo.write(90);
+      cout=0;
     }
   }
 }
