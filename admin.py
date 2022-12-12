@@ -73,7 +73,7 @@ class Widget(Qt.QWidget):
 		layout.addWidget(self.table)
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
-		self.setMinimumSize(QSize(500, self.screenRect.height()))
+		self.setMinimumSize(QSize(500, self.desktop.screenGeometry().height()))
 		#self.showMaximized() 
 		self.show()
 		self.Cuff()
