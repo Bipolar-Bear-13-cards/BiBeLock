@@ -26,6 +26,7 @@ class Widget(Qt.QWidget):
 		cursor = connection.cursor()
 		cursor.execute("SELECT * FROM SmartH")
 		allusr=cursor.fetchall()
+		connection.close()
 		#self.n=n
 		self.setWindowTitle("панель управления устройством контроля доступа")
 		self.sprbtn=Qt.QPushButton()
