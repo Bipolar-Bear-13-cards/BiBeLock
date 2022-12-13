@@ -3,6 +3,8 @@ from PyQt5 import QtWidgets, QtCore, Qt
 from PyQt5.QtCore import QSize
 import sys
 import sqlite3
+import pyotp
+import qrcode
 
 
 
@@ -16,6 +18,7 @@ class Widget(Qt.QWidget):
 		self.PIN=""
 		for i in range(4):
 			self.PIN=self.PIN+str(random.randrange(10))
+		self.key = pyotp.random_base32()
 		super().__init__()
 		self.setWindowTitle("Добавление нового пользователя")
 		layout1 = Qt.QVBoxLayout(self)
@@ -56,8 +59,8 @@ class Widget(Qt.QWidget):
 		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
 		cursor.execute('''CREATE TABLE IF NOT EXISTS Users
-                    (UID TEXT, sname TEXT, name TEXT, mail TEXT, PIN TEXT)''')
-		userid = [(int(sys.argv[1]),self.pole1.text(),self.pole2.text(),self.pole3.text(),self.PIN)]
+                    (UID TEXT, sname TEXT, name TEXT, mail TEXT, PIN TEXT, key TEXT)''')
+		userid = [(sys.argv[1],self.pole1.text(),self.pole2.text(),self.pole3.text(),self.PIN)]
 		connection.commit()
 		connection.close()
 
@@ -69,7 +72,9 @@ class Widget(Qt.QWidget):
 		os.system("python3 small.py "+str(sys.argv[1])+" "+self.PIN)
 
 	def bigger(self):
-		1
+		qrka=qrcode.make(pyotp.totp.TOTP(self.key).provisioning_uri(name=self.pole3.text(), issuer_name='BiBeLock'))
+		qrka.show()
+
 
 f=open("test","w+")
 f.write("ye")
