@@ -20,4 +20,5 @@ if ifrf:
 		print(0)
 else:
 	print(0)
+connection.close()
 
