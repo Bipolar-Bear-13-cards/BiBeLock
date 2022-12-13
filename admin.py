@@ -96,7 +96,7 @@ class Widget(Qt.QWidget):
 		1
 
 	def add_usr(self):
-		os.system("(sudo ./reg1.sh &);sudo python3 reg0.py")
+		os.system("(sudo python3 reg0.py &);sudo ./reg1.sh")
 		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
 		cursor.execute("SELECT * FROM Users")
