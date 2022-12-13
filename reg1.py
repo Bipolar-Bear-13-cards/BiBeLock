@@ -62,6 +62,7 @@ class Widget(Qt.QWidget):
 		cursor.execute('''CREATE TABLE IF NOT EXISTS Users
                     (UID TEXT, sname TEXT, name TEXT, mail TEXT, PIN TEXT, key TEXT)''')
 		userid = [(sys.argv[1],self.pole1.text(),self.pole2.text(),self.pole3.text(),self.PIN)]
+		cursor.executemany("INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?)", userid)
 		connection.commit()
 		connection.close()
 
