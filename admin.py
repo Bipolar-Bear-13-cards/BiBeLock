@@ -25,6 +25,8 @@ class Widget(Qt.QWidget):
 		super().__init__()
 		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
+		cursor.execute('''CREATE TABLE IF NOT EXISTS Users
+                    (UID TEXT, sname TEXT, name TEXT, mail TEXT, PIN TEXT, key TEXT)''')
 		cursor.execute("SELECT * FROM Users")
 		allusr=cursor.fetchall()
 		connection.close()
