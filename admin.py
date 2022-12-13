@@ -49,6 +49,7 @@ class Widget(Qt.QWidget):
 			self.table.setItem(i, 2, QTableWidgetItem(oneusr[1]))
 			self.table.setItem(i, 3, QTableWidgetItem(oneusr[2]))
 			self.table.setItem(i, 4, QTableWidgetItem(oneusr[3]))
+			i+=1
 			#self.btn4.append(Qt.QPushButton("удалить все сообщения о событиях"))
 			#self.btn4[i].clicked.connect(self.deleteAllOne)
 			#self.table.setCellWidget(i, 5, self.btn4[i])
