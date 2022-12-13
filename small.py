@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtCore, Qt
 from PyQt5.QtCore import QSize
 import sys
-import random
+
 
 
 
