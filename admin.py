@@ -81,7 +81,7 @@ class Widget(Qt.QWidget):
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
 		self.setMinimumSize(QSize(500, 700))
-		#self.showMaximized() 
+		#self.showMaximized()
 		self.show()
 		self.Cuff()
 
@@ -96,8 +96,25 @@ class Widget(Qt.QWidget):
 		1
 
 	def add_usr(self):
-		self.table.insertRow(self.table.rowCount())
 		os.system("(sudo ./reg1.sh &);sudo python3 reg0.py")
+		connection = sqlite3.connect('users.db')
+		cursor = connection.cursor()
+		cursor.execute("SELECT * FROM Users")
+		allusr=cursor.fetchall()
+		rowc=self.table.rowCount()
+		self.table.insertRow(rowc)
+		self.table.setItem(rowc, 1, QTableWidgetItem(allusr[-1][0]))
+		self.table.setItem(rowc, 2, QTableWidgetItem(allusr[-1][1]))
+		self.table.setItem(rowc, 3, QTableWidgetItem(allusr[-1][2]))
+		self.table.setItem(rowc, 4, QTableWidgetItem(allusr[-1][3]))
+		self.sqr.append(Qt.QCheckBox())
+		self.table.setCellWidget(rowc,0,self.sqr[i])
+		self.btn3.append(Qt.QPushButton("подробнее"))
+		self.table.setCellWidget(rowc, 6, self.btn3[i])
+		self.btn3[i].clicked.connect(self.showLogOne)
+
+		
+
 		
 
 	def deleteAllOne(self):
