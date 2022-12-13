@@ -38,6 +38,7 @@ class Widget(Qt.QWidget):
 		self.table.setRowCount(len(allusr))
 		self.table.setColumnCount(7)
 		self.table.setHorizontalHeaderLabels(["","UID", "Фамилия","Имя", "E-mail"," "," "])
+		i=0;
 		for oneusr in allusr:
 			self.sqr.append(Qt.QCheckBox())
 			self.table.setCellWidget(i,0,self.sqr[i])
