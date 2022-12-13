@@ -25,7 +25,7 @@ class Widget(Qt.QWidget):
 		super().__init__()
 		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
-		cursor.execute("SELECT * FROM SmartH")
+		cursor.execute("SELECT * FROM Users")
 		allusr=cursor.fetchall()
 		connection.close()
 		#self.n=n
