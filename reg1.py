@@ -65,6 +65,7 @@ class Widget(Qt.QWidget):
 		cursor.executemany("INSERT INTO Users VALUES (?, ?, ?, ?, ?, ?)", userid)
 		connection.commit()
 		connection.close()
+		self.close()
 
 
 	def cancel(self):
