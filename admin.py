@@ -92,8 +92,8 @@ class Widget(Qt.QWidget):
 		1
 
 	def add_usr(self):
-		os.system("(sudo ./reg1.sh &);sudo python3 reg0.py")
 		self.table.insertRow(table.rowCount())
+		os.system("(sudo ./reg1.sh &);sudo python3 reg0.py")
 		
 
 	def deleteAllOne(self):
