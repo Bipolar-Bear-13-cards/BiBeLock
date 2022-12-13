@@ -108,10 +108,10 @@ class Widget(Qt.QWidget):
 		self.table.setItem(rowc, 3, QTableWidgetItem(allusr[-1][2]))
 		self.table.setItem(rowc, 4, QTableWidgetItem(allusr[-1][3]))
 		self.sqr.append(Qt.QCheckBox())
-		self.table.setCellWidget(rowc,0,self.sqr[i])
+		self.table.setCellWidget(rowc,0,self.sqr[rowc])
 		self.btn3.append(Qt.QPushButton("подробнее"))
-		self.table.setCellWidget(rowc, 6, self.btn3[i])
-		self.btn3[i].clicked.connect(self.showLogOne)
+		self.table.setCellWidget(rowc, 6, self.btn3[rowc])
+		self.btn3[rowc].clicked.connect(self.showLogOne)
 
 		
 
