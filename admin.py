@@ -20,32 +20,32 @@ class Widget(Qt.QWidget):
 	btn5=[]
 	btn6=[]
 	btn7=[]
-	def __init__(self,table,n):
+	def __init__(self,table):
 		super().__init__()
-		self.n=n
+		connection = sqlite3.connect('users.db')
+		cursor = connection.cursor()
+		cursor.execute("SELECT * FROM SmartH")
+		allusr=cursor.fetchall()
+		#self.n=n
 		self.setWindowTitle("панель управления устройством контроля доступа")
 		self.sprbtn=Qt.QPushButton()
 		timer = QtCore.QTimer(self, timeout=self.Cuff, interval=5000)
 		timer.start()
 		self.table = table
 		layout = Qt.QVBoxLayout(self)		
-		self.table.setRowCount(self.n)
+		self.table.setRowCount(len(allusr))
 		self.table.setColumnCount(7)
-		self.table.setHorizontalHeaderLabels(["","ID", "Фамилия","Имя", "E-mail"," "," "])
-		for i in range(self.n):
+		self.table.setHorizontalHeaderLabels(["","UID", "Фамилия","Имя", "E-mail"," "," "])
+		for oneusr in allusr:
 			self.sqr.append(Qt.QCheckBox())
 			self.table.setCellWidget(i,0,self.sqr[i])
 			self.btn3.append(Qt.QPushButton("подробнее"))
 			self.table.setCellWidget(i, 6, self.btn3[i])
 			self.btn3[i].clicked.connect(self.showLogOne)
-			self.table.setItem(i, 1, QTableWidgetItem(str(i+1)))
-			self.table.setItem(i, 2, QTableWidgetItem(" "))
-			f=open(str(i+1)+"name")
-			self.table.setItem(i, 3, QTableWidgetItem(f.read()))
-			f.close()
-			f=open(str(i+1)+"mail")
-			self.table.setItem(i, 4, QTableWidgetItem(f.read()))
-			f.close()
+			self.table.setItem(i, 1, QTableWidgetItem(oneusr[0]))
+			self.table.setItem(i, 2, QTableWidgetItem(oneusr[1]))
+			self.table.setItem(i, 3, QTableWidgetItem(oneusr[2]))
+			self.table.setItem(i, 4, QTableWidgetItem(oneusr[3]))
 			#self.btn4.append(Qt.QPushButton("удалить все сообщения о событиях"))
 			#self.btn4[i].clicked.connect(self.deleteAllOne)
 			#self.table.setCellWidget(i, 5, self.btn4[i])
@@ -139,10 +139,10 @@ class Widget(Qt.QWidget):
 		f=open("logCout")
 		self.sprbtn.setText(f.read()+" новых неудачных попыток(-ки) входа")
 		f.close()
-		for i in range (1,self.n+1):
-			f=open(str(i)+"logCout")
-			self.table.setItem(i-1, 5, QTableWidgetItem(f.read()+" новых события(-й)"))
-			f.close()
+		#for i in range (1,self.n+1):
+			#f=open(str(i)+"logCout")
+			#self.table.setItem(i-1, 5, QTableWidgetItem(f.read()+" новых события(-й)"))
+			#f.close()
 		self.table.resizeColumnsToContents()
 
 	def changee(self):
@@ -156,5 +156,5 @@ class Widget(Qt.QWidget):
 
 if __name__ == '__main__':
     app = Qt.QApplication([])
-    w = Widget(Qt.QTableWidget(),2)
+    w = Widget(Qt.QTableWidget())
     sys.exit(app.exec_())
