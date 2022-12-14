@@ -45,6 +45,7 @@ class Widget(Qt.QWidget):
 			self.table.setItem(i, 0, QTableWidgetItem(event[1]))
 			self.table.setItem(i, 1, QTableWidgetItem(event[2]))
 			i += 1
+		self.table.resizeColumnsToContents()
 
 
 	def Pomet(self):
