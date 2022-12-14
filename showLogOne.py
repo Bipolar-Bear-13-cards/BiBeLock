@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets, QtCore, Qt
 from PyQt5.QtCore import QSize
 import sys
 import time
+import sqlite3
 
 
 
@@ -12,16 +13,30 @@ class Widget(Qt.QWidget):
 		super().__init__()
 		timer = QtCore.QTimer(self, timeout=self.Cuff, interval=1000)
 		timer.start()
-		self.setWindowTitle("информация по кодам доступа участка №"+sys.argv[1])
-		self.txt=Qt.QLabel('',self)
-		self.txt.setAlignment(QtCore.Qt.AlignCenter)
-		layout = Qt.QHBoxLayout(self)
+		self.setWindowTitle("информация по кодам доступа пользователя с id"+sys.argv[1])
+		connection = sqlite3.connect('users.db')
+		cursor = connection.cursor()
+		cursor.execute('''CREATE TABLE IF NOT EXISTS events
+                    (UID TEXT, dt TEXT, event TEXT, sost TEXT)''')
+		cursor.execute("SELECT * FROM Users WHERE UID=?",(sys.argv[1],))
+		self.events=cursor.fetchall()
+		connection.close()
+		self.table = table
+		self.table.setRowCount(len(self.events))
+		self.table.setColumnCount(2)
+		self.table.setHorizontalHeaderLabels(["Время события","Тип события"])
+		i=0
+		for event in self.events:
+			self.table.setItem(i, 1, QTableWidgetItem(event[1]))
+			self.table.setItem(i, 2, QTableWidgetItem(event[2]))
+			i += 1
+		layout = Qt.QVBoxLayout(self)
 		sprbtn1=Qt.QPushButton("сменить учётные данные")
 		#sprbtn1.clicked.connect(self.deleteAll)
 		layout.addWidget(sprbtn1)
 		sprbtn=Qt.QPushButton("отметить все просмотренными")
 		layout.addWidget(sprbtn)
-		layout.addWidget(self.txt)
+		layout.addWidget(self.table)
 		sprbtn.clicked.connect(self.Pomet)
 		self.show()
 
