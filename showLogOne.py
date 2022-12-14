@@ -25,11 +25,11 @@ class Widget(Qt.QWidget):
 		sprbtn.clicked.connect(self.Pomet)
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
-		self.setMinimumSize(QSize(300, 700))
+		self.setMinimumSize(QSize(500, 700))
 		self.show()
 
 	def Cuff(self):
-		self.setWindowTitle("информация по кодам доступа пользователя с id"+sys.argv[1])
+		self.setWindowTitle("информация по кодам доступа пользователя с id "+sys.argv[1])
 		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
 		cursor.execute('''CREATE TABLE IF NOT EXISTS events
