@@ -28,7 +28,7 @@ class Widget(Qt.QWidget):
 		cursor.execute('''CREATE TABLE IF NOT EXISTS Users
                     (UID TEXT, sname TEXT, name TEXT, mail TEXT, PIN TEXT, key TEXT)''')
 		cursor.execute("SELECT * FROM Users")
-		allusr=cursor.fetchall()
+		self.allusr=cursor.fetchall()
 		connection.close()
 		#self.n=n
 		self.setWindowTitle("панель управления устройством контроля доступа")
@@ -37,11 +37,11 @@ class Widget(Qt.QWidget):
 		timer.start()
 		self.table = table
 		layout = Qt.QVBoxLayout(self)		
-		self.table.setRowCount(len(allusr))
+		self.table.setRowCount(len(self.allusr))
 		self.table.setColumnCount(7)
-		self.table.setHorizontalHeaderLabels(["","UID", "Фамилия","Имя", "E-mail"," "," "])
+		self.table.setHorizontalHeaderLabels(["","UID", "Фамилия","Имя", "E-mail","Количество новых сообщений о событиях"," "])
 		i=0;
-		for oneusr in allusr:
+		for oneusr in self.allusr:
 			self.sqr.append(Qt.QCheckBox())
 			self.table.setCellWidget(i,0,self.sqr[i])
 			self.btn3.append(Qt.QPushButton("подробнее"))
@@ -102,13 +102,13 @@ class Widget(Qt.QWidget):
 		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
 		cursor.execute("SELECT * FROM Users")
-		allusr=cursor.fetchall()
+		self.allusr=cursor.fetchall()
 		rowc=self.table.rowCount()
 		self.table.insertRow(rowc)
-		self.table.setItem(rowc, 1, QTableWidgetItem(allusr[-1][0]))
-		self.table.setItem(rowc, 2, QTableWidgetItem(allusr[-1][1]))
-		self.table.setItem(rowc, 3, QTableWidgetItem(allusr[-1][2]))
-		self.table.setItem(rowc, 4, QTableWidgetItem(allusr[-1][3]))
+		self.table.setItem(rowc, 1, QTableWidgetItem(self.allusr[-1][0]))
+		self.table.setItem(rowc, 2, QTableWidgetItem(self.allusr[-1][1]))
+		self.table.setItem(rowc, 3, QTableWidgetItem(self.allusr[-1][2]))
+		self.table.setItem(rowc, 4, QTableWidgetItem(self.allusr[-1][3]))
 		self.sqr.append(Qt.QCheckBox())
 		self.table.setCellWidget(rowc,0,self.sqr[rowc])
 		self.btn3.append(Qt.QPushButton("подробнее"))
@@ -162,16 +162,20 @@ class Widget(Qt.QWidget):
 		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
 		sum=0
+		cursor1.execute('''CREATE TABLE IF NOT EXISTS events
+                    (UID TEXT, dt TEXT, event TEXT, sost TEXT)''')
 		cursor.execute("SELECT COUNT(*) FROM events WHERE event=? AND sost=?", ("считана отсутсвующая в базе данных метка",'1'))
 		sum += (cursor.fetchall()[0][0])
-		print(sum)
 		cursor.execute("SELECT COUNT(*) FROM events WHERE event=? AND sost=?", ("введены неверные постоянный и/или временный коды",'1'))
 		sum += (cursor.fetchall()[0][0])
 		self.sprbtn.setText(str(sum)+" новых неудачных попыток(-ки) входа")
 		#f.close()
-		#for i in range (1,self.n+1):
+		i=0
+		for oneusr in range(self.allusr):
 			#f=open(str(i)+"logCout")
-			#self.table.setItem(i-1, 5, QTableWidgetItem(f.read()+" новых события(-й)"))
+			cursor.execute("SELECT COUNT(*) FROM events WHERE UID=? AND sost=?", (oneusr[0],'1'))
+			self.table.setItem(i, 5, QTableWidgetItem(cursor.fetchall()[0][0]))
+			i += 1
 			#f.close()
 		connection.close()
 		self.table.resizeColumnsToContents()
