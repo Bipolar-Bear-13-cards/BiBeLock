@@ -78,7 +78,7 @@ class Widget(Qt.QWidget):
 		cursor = connection.cursor()
 		cursor.execute('''CREATE TABLE IF NOT EXISTS events
                     (UID TEXT, dt TEXT, event TEXT, sost TEXT)''')
-		cursor.execute("UPDATE events SET sost=?", ('0',))
+		cursor.execute("UPDATE events SET sost=? WHERE UID=?", ('0',sys.argv[1]))
 		connection.commit()
 		connection.close()
 
