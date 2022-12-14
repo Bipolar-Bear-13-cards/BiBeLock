@@ -1,3 +1,4 @@
+from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5 import QtWidgets, QtCore, Qt
 from PyQt5.QtCore import QSize
 import time
@@ -6,17 +7,22 @@ import sys
 
 
 class Widget(Qt.QWidget):
-	txt=[]
 	def __init__(self,table):
 		super().__init__()
 		timer = QtCore.QTimer(self, timeout=self.Cuff, interval=1000)
 		timer.start()
 		self.setWindowTitle("информация по неудачным попыткам входа")
-		self.txt.setAlignment(QtCore.Qt.AlignCenter)
 		layout = Qt.QVBoxLayout(self)
 		sprbtn=Qt.QPushButton("отметить все просмотренными")
 		layout.addWidget(sprbtn)
+		self.table = table
+		self.table.setRowCount(len(self.events))
+		self.table.setColumnCount(2)
+		self.table.setHorizontalHeaderLabels(["Время события","Тип события"])
 		sprbtn.clicked.connect(self.Pomet)
+		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
+		self.table.verticalHeader().setVisible(False)
+		self.setMinimumSize(QSize(500, 700))
 		self.show()
 
 	def Cuff(self):
