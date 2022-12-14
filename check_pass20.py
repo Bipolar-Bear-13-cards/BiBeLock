@@ -15,7 +15,6 @@ UID=sys.argv[1][:sys.argv[1].index('|')]
 cursor.execute("SELECT PIN FROM Users WHERE UID=?", (UID,))
 #f.write(ifrf+"\n")
 ifrf=cursor.fetchall()
-connection1 = sqlite3.connect('events.db')
 cursor1 = connection.cursor()
 cursor1.execute('''CREATE TABLE IF NOT EXISTS events
                     (UID TEXT, dt TEXT, event TEXT)''')
@@ -43,5 +42,6 @@ else:
 	tekevent=[(UID,str(datetime.datetime.now())[0:16],"считана отсутсвующая в базе данных метка")]
 #f.close()
 connection.close()
+cursor1.executemany("INSERT INTO Users VALUES (?, ?, ?)", tekevent)
 connection1.close()
 
