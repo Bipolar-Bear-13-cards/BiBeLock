@@ -23,13 +23,20 @@ char keys[ROWS][COLS] = {
 byte rowPins[ROWS] = {7, 8, 5, A1}; 
 byte colPins[COLS] = {3, 2, A0, 4}; 
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
+int led1 = A5;
+int led2 = A4;
+int led3 = A3;
+int led4 = A2;
 void setup() {
-  
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(led4, OUTPUT);
   Serial.begin(9600);
   SPI.begin();  //  инициализация SPI / Init SPI bus.
   mfrc522.PCD_Init();     // инициализация MFRC522 / Init MFRC522 card.
   servo.attach(6);
-  servo.write(90);  // устанавливаем серву в закрытое сосотояние
+  servo.write(90);  // устанавливаем серво-привод в закрытое сосотояние
 }
 void loop() {
   if (cout==0){
@@ -52,7 +59,7 @@ void loop() {
     UID=(String)uidDec;// Выводим UID метки в консоль.
     outpu=outpu+UID+(String)"|";
     cout=1;
-    //смена светодиода
+    digitalWrite(led1, HIGH);
   }
   else if ((cout==1)||(cout==2)){
     char key = keypad.getKey();
@@ -61,7 +68,8 @@ void loop() {
         
         if (cout==1){
           cout=2;
-          //смена светодиода
+          digitalWrite(led1, LOW);
+          digitalWrite(led2, HIGH);
         }
         else{
           cout=3;
@@ -70,6 +78,8 @@ void loop() {
       }
       else if (key=='*'){
         cout=0;
+        digitalWrite(led1, LOW);
+        digitalWrite(led2, LOW);
       }
       else{
         outpu=outpu+(String)key;
@@ -80,13 +90,34 @@ void loop() {
     delay(1000);
     c=(char)Serial.read();
     if (c =='0'){
-      //смена диода
+      digitalWrite(led2, LOW);
+      digitalWrite(led4, HIGH);
+      delay(700);
+      digitalWrite(led4, LOW);
+      delay(700);
+      digitalWrite(led4, HIGH);
+      delay(700);
+      digitalWrite(led4, LOW);
+      delay(700);
+      digitalWrite(led4, HIGH);
+      delay(700);
+      digitalWrite(led4, LOW);
       cout=0;
     }
     else if (c=='1'){
-      //смена диода
+      digitalWrite(led2, LOW);
       servo.write(1);
-      delay(3000);
+      digitalWrite(led4, HIGH);
+      delay(700);
+      digitalWrite(led4, LOW);
+      delay(700);
+      digitalWrite(led4, HIGH);
+      delay(700);
+      digitalWrite(led4, LOW);
+      delay(700);
+      digitalWrite(led4, HIGH);
+      delay(700);
+      digitalWrite(led4, LOW);
       servo.write(90);
       cout=0;
     }
