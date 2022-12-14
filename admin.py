@@ -159,9 +159,9 @@ class Widget(Qt.QWidget):
 	
 
 	def Cuff(self):
-		f=open("logCout")
-		self.sprbtn.setText(f.read()+" новых неудачных попыток(-ки) входа")
-		f.close()
+		#f=open("logCout")
+		self.sprbtn.setText(" новых неудачных попыток(-ки) входа")
+		#f.close()
 		#for i in range (1,self.n+1):
 			#f=open(str(i)+"logCout")
 			#self.table.setItem(i-1, 5, QTableWidgetItem(f.read()+" новых события(-й)"))
