@@ -12,48 +12,39 @@ class Widget(Qt.QWidget):
 		timer = QtCore.QTimer(self, timeout=self.Cuff, interval=1000)
 		timer.start()
 		self.setWindowTitle("информация по неудачным попыткам входа")
-		self.txt=Qt.QLabel('',self)
 		self.txt.setAlignment(QtCore.Qt.AlignCenter)
-		layout = Qt.QHBoxLayout(self)
+		layout = Qt.QVBoxLayout(self)
 		sprbtn=Qt.QPushButton("отметить все просмотренными")
-		layout.addWidget(self.txt)
 		layout.addWidget(sprbtn)
 		sprbtn.clicked.connect(self.Pomet)
 		self.show()
 
 	def Cuff(self):
-		f=open("log")
-		inlines=''
-		f1=open("logCoutP")
-		n=int(f1.read())
-		f2=open("logCout")
+		connection = sqlite3.connect('users.db')
+		cursor = connection.cursor()
+		cursor.execute('''CREATE TABLE IF NOT EXISTS events
+                    (UID TEXT, dt TEXT, event TEXT, sost TEXT)''')
+		cursor.execute("SELECT * FROM events")
+		self.events=cursor.fetchall()
+		connection.close()
+		self.table.setRowCount(len(self.events))
+		self.table.setColumnCount(2)
+		self.table.setHorizontalHeaderLabels(["Время события","Тип события"])
 		i=0
-		for line in f:
-			if i<n:
-				inlines=(line+"\n"+inlines)
-			else:
-				inlines=("(новое)"+line+"\n"+inlines)
-			i+=1
-		if n+int(f2.read()) == 0:
-                        self.txt.setText("       Сообщений нет       ")
-		else:
-			self.txt.setText(inlines[:-1])
-		f.close()
-		f1.close()
-		f2.close()
+		for event in self.events:
+			self.table.setItem(i, 0, QTableWidgetItem(event[1]))
+			self.table.setItem(i, 1, QTableWidgetItem(event[2]))
+			i += 1
+		self.table.resizeColumnsToContents()
 
 	def Pomet(self):
-		f1=open("logCout")
-		f1P=open("logCoutP")
-		buffer=str(int(f1.read())+int(f1P.read()))
-		f1.close()
-		f1P.close()
-		f1=open("logCout","w+")
-		f1.write("0")
-		f1.close()
-		f2=open("logCoutP","w+")
-		f2.write(buffer)
-		f2.close()
+		connection = sqlite3.connect('users.db')
+		cursor = connection.cursor()
+		cursor.execute('''CREATE TABLE IF NOT EXISTS events
+                    (UID TEXT, dt TEXT, event TEXT, sost TEXT)''')
+		cursor.execute("UPDATE events SET sost=?", ('0',))
+		connection.commit()
+		connection.close()
 
 
 app = Qt.QApplication([])

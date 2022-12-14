@@ -14,6 +14,7 @@ class Widget(Qt.QWidget):
 	txt=[]
 	def __init__(self,table):
 		super().__init__()
+		self.setWindowTitle("информация по кодам доступа пользователя с id "+sys.argv[1])
 		timer = QtCore.QTimer(self, timeout=self.Cuff, interval=1000)
 		timer.start()
 		self.table = table
@@ -36,7 +37,6 @@ class Widget(Qt.QWidget):
 		self.show()
 
 	def Cuff(self):
-		self.setWindowTitle("информация по кодам доступа пользователя с id "+sys.argv[1])
 		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
 		cursor.execute('''CREATE TABLE IF NOT EXISTS events
@@ -73,7 +73,6 @@ class Widget(Qt.QWidget):
 
 
 	def Pomet(self):
-		self.setWindowTitle("информация по кодам доступа пользователя с id "+sys.argv[1])
 		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
 		cursor.execute('''CREATE TABLE IF NOT EXISTS events
