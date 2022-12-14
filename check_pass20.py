@@ -43,4 +43,5 @@ else:
 	tekevent=[(UID,str(datetime.datetime.now())[0:16],"считана отсутсвующая в базе данных метка")]
 #f.close()
 connection.close()
+connection1.close()
 
