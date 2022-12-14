@@ -171,7 +171,7 @@ class Widget(Qt.QWidget):
 		self.sprbtn.setText(str(sum)+" новых неудачных попыток(-ки) входа")
 		#f.close()
 		i=0
-		for oneusr in range(self.allusr):
+		for oneusr in self.allusr:
 			#f=open(str(i)+"logCout")
 			cursor.execute("SELECT COUNT(*) FROM events WHERE UID=? AND sost=?", (oneusr[0],'1'))
 			self.table.setItem(i, 5, QTableWidgetItem(cursor.fetchall()[0][0]))
