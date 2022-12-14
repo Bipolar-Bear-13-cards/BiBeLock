@@ -100,6 +100,7 @@ void loop() {
         digitalWrite(led4, HIGH);
       }
       digitalWrite(led4, LOW);
+      cout=0;
     }
     else if (c=='1'){
       digitalWrite(led2, LOW);
