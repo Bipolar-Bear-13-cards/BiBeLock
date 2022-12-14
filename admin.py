@@ -82,7 +82,7 @@ class Widget(Qt.QWidget):
 		layout.addWidget(self.table)
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
-		self.setMinimumSize(QSize(500, 700))
+		self.setMinimumSize(QSize(850, 700))
 		#self.showMaximized()
 		self.show()
 		self.Cuff()
@@ -174,7 +174,7 @@ class Widget(Qt.QWidget):
 		for oneusr in self.allusr:
 			#f=open(str(i)+"logCout")
 			cursor.execute("SELECT COUNT(*) FROM events WHERE UID=? AND sost=?", (oneusr[0],'1'))
-			self.table.setItem(i, 5, QTableWidgetItem(cursor.fetchall()[0][0]))
+			self.table.setItem(i, 5, QTableWidgetItem(str(cursor.fetchall()[0][0])))
 			i += 1
 			#f.close()
 		connection.close()
