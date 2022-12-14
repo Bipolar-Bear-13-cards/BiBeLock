@@ -39,6 +39,7 @@ class Widget(Qt.QWidget):
 		self.table.setHorizontalHeaderLabels(["Время события","Тип события"])
 		i=0
 		for event in self.events:
+			print(event)
 			self.table.setItem(i, 1, QTableWidgetItem(event[1]))
 			self.table.setItem(i, 2, QTableWidgetItem(event[2]))
 			i += 1
