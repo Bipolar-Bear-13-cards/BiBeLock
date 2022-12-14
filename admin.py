@@ -131,7 +131,7 @@ class Widget(Qt.QWidget):
 	def showLogOne(self):
 		cout=999
 		sender = self.sender()
-		for i in range(self.n):
+		for i in range(len(self(allusr))):
 			if sender==self.btn3[i]:
 				cout=i+1
 				break
