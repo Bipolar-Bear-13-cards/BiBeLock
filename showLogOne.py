@@ -31,7 +31,7 @@ class Widget(Qt.QWidget):
 		cursor = connection.cursor()
 		cursor.execute('''CREATE TABLE IF NOT EXISTS events
                     (UID TEXT, dt TEXT, event TEXT, sost TEXT)''')
-		cursor.execute("SELECT * FROM Users WHERE UID=?",(sys.argv[1],))
+		cursor.execute("SELECT * FROM events WHERE UID=?",(sys.argv[1],))
 		self.events=cursor.fetchall()
 		connection.close()
 		self.table.setRowCount(len(self.events))
