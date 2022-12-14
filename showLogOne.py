@@ -23,6 +23,9 @@ class Widget(Qt.QWidget):
 		layout.addWidget(sprbtn)
 		layout.addWidget(self.table)
 		sprbtn.clicked.connect(self.Pomet)
+		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
+		self.table.verticalHeader().setVisible(False)
+		self.setMinimumSize(QSize(850, 500))
 		self.show()
 
 	def Cuff(self):
