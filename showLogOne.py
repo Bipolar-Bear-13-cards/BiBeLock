@@ -14,8 +14,6 @@ class Widget(Qt.QWidget):
 		super().__init__()
 		timer = QtCore.QTimer(self, timeout=self.Cuff, interval=1000)
 		timer.start()
-		self.setWindowTitle("информация по кодам доступа пользователя с id"+sys.argv[1])
-		connection = sqlite3.connect('users.db')
 		self.table = table
 		layout = Qt.QVBoxLayout(self)
 		sprbtn1=Qt.QPushButton("сменить учётные данные")
@@ -28,6 +26,8 @@ class Widget(Qt.QWidget):
 		self.show()
 
 	def Cuff(self):
+		self.setWindowTitle("информация по кодам доступа пользователя с id"+sys.argv[1])
+		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
 		cursor.execute('''CREATE TABLE IF NOT EXISTS events
                     (UID TEXT, dt TEXT, event TEXT, sost TEXT)''')
