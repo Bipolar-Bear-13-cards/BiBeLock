@@ -162,7 +162,7 @@ class Widget(Qt.QWidget):
 		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
 		sum=0
-		cursor1.execute('''CREATE TABLE IF NOT EXISTS events
+		cursor.execute('''CREATE TABLE IF NOT EXISTS events
                     (UID TEXT, dt TEXT, event TEXT, sost TEXT)''')
 		cursor.execute("SELECT COUNT(*) FROM events WHERE event=? AND sost=?", ("считана отсутсвующая в базе данных метка",'1'))
 		sum += (cursor.fetchall()[0][0])
