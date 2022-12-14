@@ -135,7 +135,7 @@ class Widget(Qt.QWidget):
 			if sender==self.btn3[i]:
 				cout=i+1
 				break
-		os.system("python3 showLogOne.py "+self.allusr[cout])
+		os.system("python3 showLogOne.py "+self.allusr[cout][0])
 
 	def showLog(self):
 		os.system("python3 showLog.py")
