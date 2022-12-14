@@ -14,6 +14,7 @@ char c;
 int cout = 0;
 const byte ROWS = 4; // 4 строки
 const byte COLS = 4;// 4 столбца
+
 char keys[ROWS][COLS] = {
   {'1','2','3','A'},
   {'4','5','6','B'},
