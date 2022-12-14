@@ -163,9 +163,10 @@ class Widget(Qt.QWidget):
 		cursor = connection.cursor()
 		sum=0
 		cursor.execute("SELECT COUNT(*) FROM events WHERE event=? AND sost=?", ("считана отсутсвующая в базе данных метка",'1'))
-		sum += cursor.fetchall()[0][0]
+		sum += (cursor.fetchall()[0][0])
+		print(sum)
 		cursor.execute("SELECT COUNT(*) FROM events WHERE event=? AND sost=?", ("введены неверные постоянный и/или временный коды",'1'))
-		sum += cursor.fetchall()[0][0]
+		sum += (cursor.fetchall()[0][0])
 		self.sprbtn.setText(str(sum)+" новых неудачных попыток(-ки) входа")
 		#f.close()
 		#for i in range (1,self.n+1):
