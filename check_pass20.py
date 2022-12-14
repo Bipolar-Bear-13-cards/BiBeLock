@@ -41,7 +41,7 @@ else:
 	print(0)
 	tekevent=[(UID,str(datetime.datetime.now())[0:16],"считана отсутсвующая в базе данных метка")]
 #f.close()
-cursor1.executemany("INSERT INTO Users VALUES (?, ?, ?)", tekevent)
+cursor1.executemany("INSERT INTO events VALUES (?, ?, ?)", tekevent)
 connection.close()
 
 
