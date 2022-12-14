@@ -93,44 +93,25 @@ void loop() {
     if (c =='0'){
       digitalWrite(led2, LOW);
       digitalWrite(led4, HIGH);
-      delay(300);
+      for (int i=0; i<20; i++){
+        delay(100);
+        digitalWrite(led4, LOW);
+        delay(100);
+        digitalWrite(led4, HIGH);
+      }
       digitalWrite(led4, LOW);
-      delay(300);
-      digitalWrite(led4, HIGH);
-      delay(300);
-      digitalWrite(led4, LOW);
-      delay(300);
-      digitalWrite(led4, HIGH);
-      delay(300);
-      digitalWrite(led4, LOW);
-      cout=0;
     }
     else if (c=='1'){
       digitalWrite(led2, LOW);
       servo.write(1);
-      digitalWrite(led4, HIGH);
-      delay(300);
-      digitalWrite(led4, LOW);
-      delay(300);
-      digitalWrite(led4, HIGH);
-      delay(300);
-      digitalWrite(led4, LOW);
-      delay(300);
-      digitalWrite(led4, HIGH);
-      delay(300);
-      digitalWrite(led4, LOW);
-      delay(300);
-      digitalWrite(led4, HIGH);
-      delay(300);
-      digitalWrite(led4, LOW);
-      delay(300);
-      digitalWrite(led4, HIGH);
-      delay(300);
-      digitalWrite(led4, LOW);
-      delay(300);
-      digitalWrite(led4, HIGH);
-      delay(300);
-      digitalWrite(led4, LOW);
+      digitalWrite(led3, HIGH);
+      for (int i=0; i<20; i++){
+        delay(100);
+        digitalWrite(led3, LOW);
+        delay(100);
+        digitalWrite(led3, HIGH);
+      }
+      digitalWrite(led3, LOW);
       servo.write(90);
       cout=0;
     }
