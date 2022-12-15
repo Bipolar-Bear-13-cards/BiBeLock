@@ -1,8 +1,0 @@
-f=open("log","w+")
-f.close()
-f=open("logCout","w+")
-f.write('0')
-f.close()
-f=open("logCoutP","w+")
-f.write('0')
-f.close()
