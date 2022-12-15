@@ -17,6 +17,7 @@ class Widget(Qt.QWidget):
 		sprbtn=Qt.QPushButton("отметить все просмотренными")
 		layout.addWidget(sprbtn)
 		self.table = table
+		layout.addWidget(self.table)
 		sprbtn.clicked.connect(self.Pomet)
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
