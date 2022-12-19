@@ -90,7 +90,14 @@ class Widget(Qt.QWidget):
 			self.sqr[i].setChecked(True)
 
 	def del_usr(self):
-		1
+		connection = sqlite3.connect('users.db')
+		cursor = connection.cursor()
+		cursor.execute('''CREATE TABLE IF NOT EXISTS Users
+                    (UID TEXT, sname TEXT, name TEXT, mail TEXT, PIN TEXT, key TEXT)''')
+		cursor.execute("SELECT * FROM Users")
+		for sq in self.sqr:
+			print(sq.isChecked())
+		connection.close()
 
 	def add_usr(self):
 		os.system("(sudo python3 reg0.py &);sudo ./reg1.sh")
