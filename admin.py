@@ -101,6 +101,7 @@ class Widget(Qt.QWidget):
 				#indl.append(self.sqr.index(sq))
 				self.allusr.pop(self.sqr.index(sq))
 				self.sqr.pop(self.sqr.index(sq))
+				self.btn3.pop(self.sqr.index(sq))
 			sq.setChecked(False)
 		#for ind in indl:
 			#self.allusr.pop(ind)
