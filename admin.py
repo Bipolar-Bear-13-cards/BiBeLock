@@ -98,7 +98,7 @@ class Widget(Qt.QWidget):
 		for sq in self.sqr:
 			if sq.isChecked():
 				cursor.execute("DELETE FROM Users WHERE UID = ?",(self.allusr[self.sqr.index(sq)][0],))
-				indl=append(self.sqr.index(sq))
+				indl.append(self.sqr.index(sq))
 			sq.setChecked(False)
 		for ind in indl:
 			self.allusr.pop(ind)
