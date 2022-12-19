@@ -185,3 +185,4 @@ if __name__ == '__main__':
     app = Qt.QApplication([])
     w = Widget(Qt.QTableWidget())
     sys.exit(app.exec_())
+
