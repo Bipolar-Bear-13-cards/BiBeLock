@@ -94,10 +94,25 @@ class Widget(Qt.QWidget):
 		cursor = connection.cursor()
 		cursor.execute('''CREATE TABLE IF NOT EXISTS Users
                     (UID TEXT, sname TEXT, name TEXT, mail TEXT, PIN TEXT, key TEXT)''')
-		cursor.execute("SELECT * FROM Users")
 		for sq in self.sqr:
-			print(sq.isChecked())
+			if sq.isChecked():
+				cursor.execute("DELETE FROM Users WHERE UID = ?",(self.allusr[self.sqr.index(sq)][0],))
+		cursor.execute("SELECT * FROM Users")
+		self.allusr=cursor.fetchall()
+		self.table.setRowCount(len(self.allusr))
 		connection.close()
+		i=0;
+		for oneusr in self.allusr:
+			self.sqr.append(Qt.QCheckBox())
+			self.table.setCellWidget(i,0,self.sqr[i])
+			self.btn3.append(Qt.QPushButton("подробнее"))
+			self.table.setCellWidget(i, 6, self.btn3[i])
+			self.btn3[i].clicked.connect(self.showLogOne)
+			self.table.setItem(i, 1, QTableWidgetItem(oneusr[0]))
+			self.table.setItem(i, 2, QTableWidgetItem(oneusr[1]))
+			self.table.setItem(i, 3, QTableWidgetItem(oneusr[2]))
+			self.table.setItem(i, 4, QTableWidgetItem(oneusr[3]))
+			i+=1
 
 	def add_usr(self):
 		os.system("(sudo python3 reg0.py &);sudo ./reg1.sh")
