@@ -99,17 +99,18 @@ class Widget(Qt.QWidget):
 			if sq.isChecked():
 				cursor.execute("DELETE FROM Users WHERE UID = ?",(self.allusr[self.sqr.index(sq)][0],))
 				#indl.append(self.sqr.index(sq))
-				self.allusr.pop(self.sqr.index(sq))
-				self.btn3.pop(self.sqr.index(sq))
-				self.sqr.pop(self.sqr.index(sq))
-			sq.setChecked(False)
+			#sq.setChecked(False)
 		#for ind in indl:
 			#self.allusr.pop(ind)
 			#self.sqr.pop(ind)
 		connection.commit()
+		cursor.execute("SELECT * FROM Users")
+		self.allusr=cursor.fetchall()
 		self.table.setRowCount(len(self.allusr))
 		connection.close()
 		i=0;
+		sqr=[]
+		btn3=[]
 		for oneusr in self.allusr:
 			self.sqr.append(Qt.QCheckBox())
 			self.table.setCellWidget(i,0,self.sqr[i])
