@@ -95,14 +95,16 @@ class Widget(Qt.QWidget):
 		cursor.execute('''CREATE TABLE IF NOT EXISTS Users
                     (UID TEXT, sname TEXT, name TEXT, mail TEXT, PIN TEXT, key TEXT)''')
 		indl=[]
-		for sq in self.sqr:
+		for sq in list(reversed(self.sqr)):
 			if sq.isChecked():
 				cursor.execute("DELETE FROM Users WHERE UID = ?",(self.allusr[self.sqr.index(sq)][0],))
-				indl.append(self.sqr.index(sq))
+				#indl.append(self.sqr.index(sq))
+				self.allusr.pop(self.sqr.index(sq))
+				self.sqr.pop(self.sqr.index(sq))
 			sq.setChecked(False)
-		for ind in indl:
-			self.allusr.pop(ind)
-			self.sqr.pop(ind)
+		#for ind in indl:
+			#self.allusr.pop(ind)
+			#self.sqr.pop(ind)
 		connection.commit()
 		self.table.setRowCount(len(self.allusr))
 		connection.close()
