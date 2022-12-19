@@ -94,7 +94,6 @@ class Widget(Qt.QWidget):
 		cursor = connection.cursor()
 		cursor.execute('''CREATE TABLE IF NOT EXISTS Users
                     (UID TEXT, sname TEXT, name TEXT, mail TEXT, PIN TEXT, key TEXT)''')
-		indl=[]
 		for sq in list(reversed(self.sqr)):
 			if sq.isChecked():
 				cursor.execute("DELETE FROM Users WHERE UID = ?",(self.allusr[self.sqr.index(sq)][0],))
@@ -113,6 +112,7 @@ class Widget(Qt.QWidget):
 		btn3=[]
 		for oneusr in self.allusr:
 			self.sqr.append(Qt.QCheckBox())
+			self.sqr[i].setChecked(False)
 			self.table.setCellWidget(i,0,self.sqr[i])
 			self.btn3.append(Qt.QPushButton("подробнее"))
 			self.table.setCellWidget(i, 6, self.btn3[i])
