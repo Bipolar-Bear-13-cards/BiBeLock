@@ -30,7 +30,6 @@ class Widget(Qt.QWidget):
 		cursor.execute("SELECT * FROM Users")
 		self.allusr=cursor.fetchall()
 		connection.close()
-		#self.n=n
 		self.setWindowTitle("панель управления устройством контроля доступа")
 		self.sprbtn=Qt.QPushButton()
 		timer = QtCore.QTimer(self, timeout=self.Cuff, interval=5000)
@@ -52,18 +51,6 @@ class Widget(Qt.QWidget):
 			self.table.setItem(i, 3, QTableWidgetItem(oneusr[2]))
 			self.table.setItem(i, 4, QTableWidgetItem(oneusr[3]))
 			i+=1
-			#self.btn4.append(Qt.QPushButton("удалить все сообщения о событиях"))
-			#self.btn4[i].clicked.connect(self.deleteAllOne)
-			#self.table.setCellWidget(i, 5, self.btn4[i])
-			#self.btn5.append(Qt.QPushButton("сгенерировать новые коды входа"))
-			#self.btn5[i].clicked.connect(self.NewCode)
-			#self.table.setCellWidget(i, 6, self.btn5[i])
-			#self.btn6.append(Qt.QPushButton("выдать код входа"))
-			#self.btn6[i].clicked.connect(self.small)
-			#self.table.setCellWidget(i, 7, self.btn6[i])
-			#self.btn7.append(Qt.QPushButton("Сменить данные владельца"))
-			#self.btn7[i].clicked.connect(self.changee)
-			#self.table.setCellWidget(i, 8, self.btn7[i])
 		layout.setAlignment(QtCore.Qt.AlignCenter)
 		layout.addWidget(self.sprbtn)
 		self.sprbtn.clicked.connect(self.showLog)
@@ -177,14 +164,11 @@ class Widget(Qt.QWidget):
 		cursor.execute("SELECT COUNT(*) FROM events WHERE event=? AND sost=?", ("введены неверные постоянный и/или временный коды",'1'))
 		sum += (cursor.fetchall()[0][0])
 		self.sprbtn.setText(str(sum)+" новых неудачных попыток(-ки) входа")
-		#f.close()
 		i=0
 		for oneusr in self.allusr:
-			#f=open(str(i)+"logCout")
 			cursor.execute("SELECT COUNT(*) FROM events WHERE UID=? AND sost=?", (oneusr[0],'1'))
 			self.table.setItem(i, 5, QTableWidgetItem(str(cursor.fetchall()[0][0])))
 			i += 1
-			#f.close()
 		connection.close()
 		self.table.resizeColumnsToContents()
 
