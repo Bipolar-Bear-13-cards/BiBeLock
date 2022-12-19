@@ -97,8 +97,8 @@ class Widget(Qt.QWidget):
 		for sq in self.sqr:
 			if sq.isChecked():
 				cursor.execute("DELETE FROM Users WHERE UID = ?",(self.allusr[self.sqr.index(sq)][0],))
-				self.sqr.pop(self.sqr.index(sq))
 				self.allusr.pop(self.sqr.index(sq))
+				self.sqr.pop(self.sqr.index(sq))
 			sq.setChecked(False)
 		connection.commit()
 		self.table.setRowCount(len(self.allusr))
