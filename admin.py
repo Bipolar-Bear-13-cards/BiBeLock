@@ -158,7 +158,7 @@ class Widget(Qt.QWidget):
 		sender = self.sender()
 		for i in range(len(self.allusr)):
 			if sender==self.btn3[i]:
-				cout=i+1
+				cout=i
 				break
 		os.system("python3 showLogOne.py "+self.allusr[cout][0])
 
