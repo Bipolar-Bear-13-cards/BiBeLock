@@ -55,19 +55,24 @@ class Widget(Qt.QWidget):
 		self.table.resizeColumnsToContents()
 
 	def small(self):
+		self.PIN=""
+		for i in range(4):
+			self.PIN=self.PIN+str(random.randrange(10))
 		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
-		cursor.execute("SELECT * FROM Users WHERE UID=?",(sys.argv[1],))
-		usr=cursor.fetchall()[0]
-		os.system("python3 small.py "+str(sys.argv[1])+" "+usr[4])
+		cursor.execute("UPDATE Users SET PIN=? WHERE UID=?", (PIN,sys.argv[1]))
+		os.system("python3 small.py "+str(sys.argv[1])+" "+PIN)
+		connection.commit()
 		connection.close()
 	
 	def bigger(self):
 		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
-		cursor.execute("SELECT * FROM Users WHERE UID=?",(sys.argv[1],))
-		usr=cursor.fetchall()[0]
-		qrka=qrcode.make(pyotp.totp.TOTP(usr[5]).provisioning_uri(name=usr[3], issuer_name='BiBeLock'))
+		key = pyotp.random_base32()
+		cursor.execute("UPDATE Users SET key=? WHERE UID=?", (key,sys.argv[1]))
+		connection.commit()
+		cursor.execute("SELECT mail FROM Users WHERE UID=?", (sys.argv[1],))
+		qrka=qrcode.make(pyotp.totp.TOTP(key).provisioning_uri(name=cursor.fetchall()[0][0], issuer_name='BiBeLock'))
 		qrka.show()
 		connection.close()
 
