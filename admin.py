@@ -85,8 +85,14 @@ class Widget(Qt.QWidget):
 
 
 	def selectAll(self):
+		cout=0
 		for i in range(len(self.allusr)):
+			if self.sqr[i].isChecked():
+				cout += 1
 			self.sqr[i].setChecked(True)
+		if cout==len(self.sqr):
+			for i in range(len(self.allusr)):
+				self.sqr[i].setChecked(False)
 
 	def del_usr(self):
 		connection = sqlite3.connect('users.db')
