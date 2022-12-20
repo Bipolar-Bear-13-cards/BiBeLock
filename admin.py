@@ -54,9 +54,6 @@ class Widget(Qt.QWidget):
 		layout.setAlignment(QtCore.Qt.AlignCenter)
 		layout.addWidget(self.sprbtn)
 		self.sprbtn.clicked.connect(self.showLog)
-		sprbtn1=Qt.QPushButton("очистить историю попыток входа")
-		sprbtn1.clicked.connect(self.deleteAll)
-		layout.addWidget(sprbtn1)
 		sprbtn2=Qt.QPushButton("выделить все")
 		sprbtn2.clicked.connect(self.selectAll)
 		layout.addWidget(sprbtn2)
@@ -72,15 +69,6 @@ class Widget(Qt.QWidget):
 		self.setMinimumSize(QSize(850, 700))
 		self.show()
 		self.Cuff()
-
-	def deleteAll(self):
-		connection = sqlite3.connect('users.db')
-		cursor = connection.cursor()
-		cursor.execute('''CREATE TABLE IF NOT EXISTS events
-                    (UID TEXT, dt TEXT, event TEXT, sost TEXT)''')
-		cursor.execute("DROP TABLE events")
-		connection.commit()
-		connection.close()
 
 
 

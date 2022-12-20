@@ -88,6 +88,15 @@ class Widget(Qt.QWidget):
 		connection.commit()
 		connection.close()
 
+	def deleteAllOne(self):
+		connection = sqlite3.connect('users.db')
+		cursor = connection.cursor()
+		cursor.execute('''CREATE TABLE IF NOT EXISTS events
+                    (UID TEXT, dt TEXT, event TEXT, sost TEXT)''')
+		cursor.execute("DELETE FROM events WHERE UID = ?",(sys.argv[1],))
+		connection.commit()
+		connection.close()
+
 
 app = Qt.QApplication([])
 w = Widget(Qt.QTableWidget())

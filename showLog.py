@@ -16,6 +16,9 @@ class Widget(Qt.QWidget):
 		layout = Qt.QVBoxLayout(self)
 		sprbtn=Qt.QPushButton("отметить все просмотренными")
 		layout.addWidget(sprbtn)
+		sprbtn1=Qt.QPushButton("очистить историю попыток входа")
+		sprbtn1.clicked.connect(self.deleteAll)
+		layout.addWidget(sprbtn1)
 		self.table = table
 		layout.addWidget(self.table)
 		sprbtn.clicked.connect(self.Pomet)
@@ -54,6 +57,16 @@ class Widget(Qt.QWidget):
 		cursor.execute('''CREATE TABLE IF NOT EXISTS events
                     (UID TEXT, dt TEXT, event TEXT, sost TEXT)''')
 		cursor.execute("UPDATE events SET sost=?", ('0',))
+		connection.commit()
+		connection.close()
+
+
+	def deleteAll(self):
+		connection = sqlite3.connect('users.db')
+		cursor = connection.cursor()
+		cursor.execute('''CREATE TABLE IF NOT EXISTS events
+                    (UID TEXT, dt TEXT, event TEXT, sost TEXT)''')
+		cursor.execute("DROP TABLE events")
 		connection.commit()
 		connection.close()
 
