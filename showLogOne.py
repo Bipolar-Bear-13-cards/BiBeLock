@@ -56,7 +56,7 @@ class Widget(Qt.QWidget):
 		self.table.resizeColumnsToContents()
 
 	def small(self):
-		self.PIN=""
+		PIN=""
 		for i in range(4):
 			self.PIN=self.PIN+str(random.randrange(10))
 		connection = sqlite3.connect('users.db')
