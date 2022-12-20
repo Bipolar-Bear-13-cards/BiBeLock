@@ -58,7 +58,7 @@ class Widget(Qt.QWidget):
 	def small(self):
 		PIN=""
 		for i in range(4):
-			self.PIN=self.PIN+str(random.randrange(10))
+			PIN=PIN+str(random.randrange(10))
 		connection = sqlite3.connect('users.db')
 		cursor = connection.cursor()
 		cursor.execute("UPDATE Users SET PIN=? WHERE UID=?", (PIN,sys.argv[1]))
