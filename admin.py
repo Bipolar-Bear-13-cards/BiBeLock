@@ -70,7 +70,6 @@ class Widget(Qt.QWidget):
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
 		self.setMinimumSize(QSize(850, 700))
-		#self.showMaximized()
 		self.show()
 		self.Cuff()
 

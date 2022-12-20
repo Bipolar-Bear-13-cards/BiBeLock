@@ -21,7 +21,7 @@ class Widget(Qt.QWidget):
 		sprbtn.clicked.connect(self.Pomet)
 		self.table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers) 
 		self.table.verticalHeader().setVisible(False)
-		self.setMinimumSize(QSize(500, 700))
+		self.setMinimumSize(QSize(900, 700))
 		self.show()
 
 	def Cuff(self):
@@ -34,11 +34,13 @@ class Widget(Qt.QWidget):
 		connection.close()
 		self.table.setRowCount(len(self.events))
 		self.table.setColumnCount(2)
-		self.table.setHorizontalHeaderLabels(["Время события","Тип события"])
+		self.table.setHorizontalHeaderLabels(["Состояние","UID","Время события","Тип события"])
 		i=0
 		for event in self.events:
-			self.table.setItem(i, 0, QTableWidgetItem(event[1]))
-			self.table.setItem(i, 1, QTableWidgetItem(event[2]))
+			self.table.setItem(i, 0, QTableWidgetItem(event[3]))
+			self.table.setItem(i, 1, QTableWidgetItem(event[0]))
+			self.table.setItem(i, 2, QTableWidgetItem(event[1]))
+			self.table.setItem(i, 3, QTableWidgetItem(event[2]))
 			i += 1
 		self.table.resizeColumnsToContents()
 
