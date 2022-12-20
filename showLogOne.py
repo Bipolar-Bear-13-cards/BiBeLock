@@ -32,7 +32,7 @@ class Widget(Qt.QWidget):
 		sprbtn.clicked.connect(self.Pomet)
 		layout.addWidget(sprbtn)
 		sprbtn3=Qt.QPushButton("очистить историю попыток входа")
-		sprbtn3.clicked.connect(self.deleteAll)
+		sprbtn3.clicked.connect(self.deleteAllOne)
 		layout.addWidget(sprbtn3)
 		layout.addWidget(self.table)
 		sprbtn.clicked.connect(self.Pomet)
