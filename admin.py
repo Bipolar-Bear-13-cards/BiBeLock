@@ -90,11 +90,6 @@ class Widget(Qt.QWidget):
 		for sq in list(reversed(self.sqr)):
 			if sq.isChecked():
 				cursor.execute("DELETE FROM Users WHERE UID = ?",(self.allusr[self.sqr.index(sq)][0],))
-				#indl.append(self.sqr.index(sq))
-			#sq.setChecked(False)
-		#for ind in indl:
-			#self.allusr.pop(ind)
-			#self.sqr.pop(ind)
 		connection.commit()
 		cursor.execute("SELECT * FROM Users")
 		self.allusr=cursor.fetchall()
@@ -134,18 +129,7 @@ class Widget(Qt.QWidget):
 		self.table.setCellWidget(rowc, 6, self.btn3[rowc])
 		self.btn3[rowc].clicked.connect(self.showLogOne)
 
-		
 
-		
-
-	def deleteAllOne(self):
-		cout=999
-		sender = self.sender()
-		for i in range(self.n):
-			if sender==self.btn4[i]:
-				cout=i+1
-				break
-		os.system("python3 deleteAllOne.py "+str(cout))
 
 	def showLogOne(self):
 		cout=999
@@ -158,22 +142,6 @@ class Widget(Qt.QWidget):
 
 	def showLog(self):
 		os.system("python3 showLog.py")
-
-	def NewCode(self):
-		cout=999
-		sender = self.sender()
-		for i in range(self.n):
-			if sender==self.btn5[i]:
-				cout=i+1
-				break
-		f=open(str(cout),"w+")
-		keys="1234567890ABCD"
-		for j in range(6):
-			passwd=""
-			for k in range(4):
-				passwd=passwd+keys[random.randint(0,13)]
-			f.write(str(cout)+"*"+passwd+"\n")
-		f.close()
 
 	
 
@@ -196,14 +164,6 @@ class Widget(Qt.QWidget):
 		connection.close()
 		self.table.resizeColumnsToContents()
 
-	def changee(self):
-		cout=999
-		sender = self.sender()
-		for i in range(self.n):
-			if sender==self.btn7[i]:
-				cout=i+1
-				break
-		os.system("python3 change.py "+str(cout))
 
 if __name__ == '__main__':
     app = Qt.QApplication([])
