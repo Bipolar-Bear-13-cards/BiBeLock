@@ -1,7 +1,7 @@
 #include <SPI.h>
 #include <MFRC522.h> // библиотека "RFID".
 #define SS_PIN 10
-#define RST_PIN 9
+#define RST_PIN 2
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 unsigned long uidDec, uidDecTemp;
 
